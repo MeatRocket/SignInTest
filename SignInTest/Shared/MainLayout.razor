@@ -1,0 +1,33 @@
+﻿@inherits LayoutComponentBase
+
+<PageTitle>SignInTest</PageTitle>
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+
+            <AuthorizeView>
+                <Authorized>
+                    <p> Welcome back : @context.User.Claims.Where(s=> s.Type =="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name").FirstOrDefault().Value</p>
+
+                    @*   @foreach (var item in context.User.Claims)
+                    {
+                    <h2>@item.Type : @item.Value</h2>
+                    }*@
+                    <img src="@context.User.Claims.Where(s => s.Type == "picture").FirstOrDefault().Value" />
+                </Authorized>
+            </AuthorizeView>
+
+
+            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
